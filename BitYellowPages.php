@@ -1,7 +1,7 @@
 <?php
 /**
-* $Header: /cvsroot/bitweaver/_bit_yellowpages/Attic/BitYellowPages.php,v 1.1 2007/02/03 19:56:56 spiderr Exp $
-* $Id: BitYellowPages.php,v 1.1 2007/02/03 19:56:56 spiderr Exp $
+* $Header: /cvsroot/bitweaver/_bit_yellowpages/Attic/BitYellowPages.php,v 1.2 2007/02/11 22:41:00 wjames5 Exp $
+* $Id: BitYellowPages.php,v 1.2 2007/02/11 22:41:00 wjames5 Exp $
 */
 
 /**
@@ -10,7 +10,7 @@
 *
 * @date created 2004/8/15
 * @author spider <spider@steelsun.com>
-* @version $Revision: 1.1 $ $Date: 2007/02/03 19:56:56 $ $Author: spiderr $
+* @version $Revision: 1.2 $ $Date: 2007/02/11 22:41:00 $ $Author: wjames5 $
 * @class BitYellowPages
 */
 
@@ -56,14 +56,14 @@ class BitYellowPages extends LibertyAttachable {
 			// This is a significant performance optimization
 			$lookupColumn = !empty( $this->mYellowPagesId )? 'yellowpages_id' : 'content_id';
 			$lookupId = !empty( $this->mYellowPagesId )? $this->mYellowPagesId : $this->mContentId;
-			$query = "SELECT ts.*, tc.*, " .
+			$query = "SELECT yp.*, tc.*, " .
 			"uue.`login` AS modifier_user, uue.`real_name` AS modifier_real_name, " .
 			"uuc.`login` AS creator_user, uuc.`real_name` AS creator_real_name " .
-			"FROM `".BIT_DB_PREFIX."bit_yellowpagess` ts " .
-			"INNER JOIN `".BIT_DB_PREFIX."tiki_content` tc ON( tc.`content_id` = ts.`content_id` )" .
-			"LEFT JOIN `".BIT_DB_PREFIX."users_users` uue ON( uue.`user_id` = tc.`modifier_user_id` )" .
-			"LEFT JOIN `".BIT_DB_PREFIX."users_users` uuc ON( uuc.`user_id` = tc.`user_id` )" .
-			"WHERE ts.`$lookupColumn`=?";
+			"FROM `".BIT_DB_PREFIX."yellowpages` yp " .
+			"INNER JOIN `".BIT_DB_PREFIX."liberty_content` lc ON( lc.`content_id` = yp.`content_id` )" .
+			"LEFT JOIN `".BIT_DB_PREFIX."users_users` uue ON( uue.`user_id` = lc.`modifier_user_id` )" .
+			"LEFT JOIN `".BIT_DB_PREFIX."users_users` uuc ON( uuc.`user_id` = lc.`user_id` )" .
+			"WHERE yp.`$lookupColumn`=?";
 			$result = $this->mDb->query( $query, array( $lookupId ) );
 
 			if( $result && $result->numRows() ) {
@@ -95,7 +95,7 @@ class BitYellowPages extends LibertyAttachable {
 	**/
 	function store( &$pParamHash ) {
 		if( $this->verify( $pParamHash )&& LibertyAttachable::store( $pParamHash ) ) {
-			$table = BIT_DB_PREFIX."bit_yellowpagess";
+			$table = BIT_DB_PREFIX."yellowpages";
 			$this->mDb->StartTrans();
 			if( $this->mYellowPagesId ) {
 				$locId = array( "name" => "yellowpages_id", "value" => $pParamHash['yellowpages_id'] );
@@ -106,7 +106,7 @@ class BitYellowPages extends LibertyAttachable {
 					// if pParamHash['yellowpages_id'] is set, some is requesting a particular yellowpages_id. Use with caution!
 					$pParamHash['yellowpages_store']['yellowpages_id'] = $pParamHash['yellowpages_id'];
 				} else {
-					$pParamHash['yellowpages_store']['yellowpages_id'] = $this->mDb->GenID( 'bit_yellowpagess_yellowpages_id_seq' );
+					$pParamHash['yellowpages_store']['yellowpages_id'] = $this->mDb->GenID( 'yellowpages_yellowpages_id_seq' );
 				}
 				$this->mYellowPagesId = $pParamHash['yellowpages_store']['yellowpages_id'];
 
@@ -193,7 +193,7 @@ class BitYellowPages extends LibertyAttachable {
 		$ret = FALSE;
 		if( $this->isValid() ) {
 			$this->mDb->StartTrans();
-			$query = "DELETE FROM `".BIT_DB_PREFIX."bit_yellowpagess` WHERE `content_id` = ?";
+			$query = "DELETE FROM `".BIT_DB_PREFIX."yellowpages` WHERE `content_id` = ?";
 			$result = $this->mDb->query( $query, array( $this->mContentId ) );
 			if( LibertyAttachable::expunge() ) {
 				$ret = TRUE;
@@ -213,7 +213,7 @@ class BitYellowPages extends LibertyAttachable {
 	}
 
 	/**
-	* This function generates a list of records from the tiki_content database for use in a list page
+	* This function generates a list of records from the liberty_content database for use in a list page
 	**/
 	function getList( &$pParamHash ) {
 		LibertyContent::prepGetList( $pParamHash );
@@ -225,26 +225,26 @@ class BitYellowPages extends LibertyAttachable {
 
 		if( is_array( $find ) ) {
 			// you can use an array of pages
-			$mid = " WHERE tc.`title` IN( ".implode( ',',array_fill( 0,count( $find ),'?' ) )." )";
+			$mid = " WHERE lc.`title` IN( ".implode( ',',array_fill( 0,count( $find ),'?' ) )." )";
 			$bindvars = $find;
 		} else if( is_string( $find ) ) {
 			// or a string
-			$mid = " WHERE UPPER( tc.`title` )like ? ";
+			$mid = " WHERE UPPER( lc.`title` )like ? ";
 			$bindvars = array( '%' . strtoupper( $find ). '%' );
 		} else if( !empty( $pUserId ) ) {
 			// or a string
-			$mid = " WHERE tc.`creator_user_id` = ? ";
+			$mid = " WHERE lc.`creator_user_id` = ? ";
 			$bindvars = array( $pUserId );
 		} else {
 			$mid = "";
 			$bindvars = array();
 		}
 
-		$query = "SELECT ts.*, tc.`content_id`, tc.`title`, tc.`data`
-			FROM `".BIT_DB_PREFIX."bit_yellowpagess` ts INNER JOIN `".BIT_DB_PREFIX."tiki_content` tc ON( tc.`content_id` = ts.`content_id` )
-			".( !empty( $mid )? $mid.' AND ' : ' WHERE ' )." tc.`content_type_guid` = '".BITYELLOWPAGES_CONTENT_TYPE_GUID."'
+		$query = "SELECT yp.*, lc.`content_id`, lc.`title`, lc.`data`
+			FROM `".BIT_DB_PREFIX."yellowpages` yp INNER JOIN `".BIT_DB_PREFIX."liberty_content` lc ON( lc.`content_id` = yp.`content_id` )
+			".( !empty( $mid )? $mid.' AND ' : ' WHERE ' )." lc.`content_type_guid` = '".BITYELLOWPAGES_CONTENT_TYPE_GUID."'
 			ORDER BY ".$this->mDb->convert_sortmode( $sort_mode );
-		$query_cant = "select count( * )from `".BIT_DB_PREFIX."tiki_content` tc ".( !empty( $mid )? $mid.' AND ' : ' WHERE ' )." tc.`content_type_guid` = '".BITYELLOWPAGES_CONTENT_TYPE_GUID."'";
+		$query_cant = "select count( * )from `".BIT_DB_PREFIX."liberty_content` lc ".( !empty( $mid )? $mid.' AND ' : ' WHERE ' )." lc.`content_type_guid` = '".BITYELLOWPAGES_CONTENT_TYPE_GUID."'";
 		$result = $this->mDb->query( $query,$bindvars,$max_records,$offset );
 		$ret = array();
 		while( $res = $result->fetchRow() ) {

@@ -1,5 +1,5 @@
 <?php
-// $Header: /cvsroot/bitweaver/_bit_yellowpages/index.php,v 1.1 2007/02/03 19:56:56 spiderr Exp $
+// $Header: /cvsroot/bitweaver/_bit_yellowpages/index.php,v 1.2 2007/02/11 22:41:00 wjames5 Exp $
 // Copyright (c) 2004 bitweaver YellowPages
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -11,7 +11,7 @@ require_once('../bit_setup_inc.php' );
 $gBitSystem->verifyPackage('yellowpages' );
 
 // Now check permissions to access this page
-$gBitSystem->verifyPermission('bit_p_read_yellowpages' );
+$gBitSystem->verifyPermission('p_read_yellowpages' );
 
 if (!isset($_REQUEST['yellowpages_id'] ) ) {
     $_REQUEST['yellowpages_id'] = $gBitSystem->getPreference("home_yellowpages");

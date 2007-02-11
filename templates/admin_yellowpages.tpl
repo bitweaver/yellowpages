@@ -8,8 +8,8 @@
 					{formlabel label="Home YellowPages (main yellowpages)" for="homeYellowPages"}
 					{forminput}
 						<select name="homeYellowPages" id="homeYellowPages">
-							{section name=ix loop=$yellowpagess}
-								<option value="{$yellowpagess[ix].yellowpages_id|escape}" {if $yellowpagess[ix].yellowpages_id eq $home_yellowpages}selected="selected"{/if}>{$yellowpagess[ix].title|truncate:20:"...":true}</option>
+							{section name=ix loop=$yellowpages}
+								<option value="{$yellowpages[ix].yellowpages_id|escape}" {if $yellowpages[ix].yellowpages_id eq $home_yellowpages}selected="selected"{/if}>{$yellowpages[ix].title|truncate:20:"...":true}</option>
 							{sectionelse}
 								<option>{tr}No records found{/tr}</option>
 							{/section}

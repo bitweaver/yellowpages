@@ -4,15 +4,15 @@
 	{/if}
 
 	{if $print_page ne 'y'}
-		{if $bit_p_edit eq 'y' or $page eq 'SandBox' and !$lock}
+		{if $p_edit eq 'y' or $page eq 'SandBox' and !$lock}
 			<a href="edit.php?yellowpages_id={$gContent->mInfo.yellowpages_id}" {if $beingEdited eq 'y'}{popup_init src="`$smarty.const.THEMES_PKG_URL`overlib.js"}{popup text="$semUser" width="-1"}{/if}>{biticon ipackage=liberty iname="edit" iexplain="edit"}</a>
 		{/if}
 
-		{if $user and $gBitSystemPrefs.package_notepad eq 'y' and $bit_p_notepad eq 'y'}
+		{if $user and $gBitSystemPrefs.package_notepad eq 'y' and $p_notepad eq 'y'}
 			<a title="{tr}Save{/tr}" href="index.php?page={$page|escape:"url"}&amp;savenotepad=1">{biticon ipackage="wiki" iname="save" iexplain="save"}</a>
 		{/if}
 
-		{if $bit_p_remove eq 'y'}
+		{if $p_remove eq 'y'}
 			<a title="{tr}remove this page{/tr}" href="remove_yellowpages.php?yellowpages_id={$gContent->mInfo.yellowpages_id}">{biticon ipackage=liberty iname="delete" iexplain="delete"}</a>
 		{/if}
 	{/if}<!-- end print_page -->
