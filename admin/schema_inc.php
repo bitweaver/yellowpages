@@ -105,6 +105,7 @@ $gBitInstaller->registerUserPermissions( YELLOWPAGES_PKG_NAME, array(
 $gBitInstaller->registerPreferences( YELLOWPAGES_PKG_NAME, array(
 	array( YELLOWPAGES_PKG_NAME, 'yellowpages_list_yellowpages_id', 'y' ),
 	array( YELLOWPAGES_PKG_NAME, 'yellowpages_list_title', 'y' ),
+	array( YELLOWPAGES_PKG_NAME, 'yellowpages_list_city', 'y' ),
 	array( YELLOWPAGES_PKG_NAME, 'yellowpages_list_region', 'y' ),
 	array( YELLOWPAGES_PKG_NAME, 'yellowpages_list_country', 'y' ),
 	array( YELLOWPAGES_PKG_NAME, 'yellowpages_max_list','30'),

@@ -1,5 +1,5 @@
 <?php
-// $Header: /cvsroot/bitweaver/_bit_yellowpages/admin/admin_yellowpages_inc.php,v 1.1 2007/02/03 19:56:56 spiderr Exp $
+// $Header: /cvsroot/bitweaver/_bit_yellowpages/admin/admin_yellowpages_inc.php,v 1.2 2007/02/11 21:57:13 wjames5 Exp $
 // Copyright (c) 2005 bitweaver YellowPages
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -20,13 +20,17 @@ $formYellowPagesLists = array(
 		'label' => 'Title',
 		'note' => 'Display the title.',
 	),
-	"yellowpages_list_description" => array(
-		'label' => 'Description',
-		'note' => 'Display the description.',
+	"yellowpages_list_city" => array(
+		'label' => 'City',
+		'note' => 'Display the region.',
 	),
-	"yellowpages_list_data" => array(
-		'label' => 'Text',
-		'note' => 'Display the text.',
+	"yellowpages_list_region" => array(
+		'label' => 'State or Province',
+		'note' => 'Display the state or province.',
+	),
+	"yellowpages_list_country" => array(
+		'label' => 'Country',
+		'note' => 'Display the country.',
 	),
 );
 $gBitSmarty->assign( 'formYellowPagesLists',$formYellowPagesLists );
@@ -41,7 +45,7 @@ if( $processForm ) {
 
 }
 
-$yellowpages = new BitYellowPages();
-$yellowpagess = $yellowpages->getList( $_REQUEST );
-$gBitSmarty->assign_by_ref('yellowpagess', $yellowpagess['data']);
+$yellowpage = new BitYellowPages();
+$yellowpages = $yellowpage->getList( $_REQUEST );
+$gBitSmarty->assign_by_ref('yellowpages', $yellowpages['data']);
 ?>
