@@ -6,6 +6,7 @@ $tables = array(
 		content_id I4 NOTNULL,
 		group_id 14,
 		parent_id 14,
+		description C(200),
 		url C(250),
 		url_title C(160),
 		phone_main C(16),
