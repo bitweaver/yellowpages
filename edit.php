@@ -1,5 +1,5 @@
 <?php
-// $Header: /cvsroot/bitweaver/_bit_yellowpages/edit.php,v 1.2 2007/02/11 22:41:00 wjames5 Exp $
+// $Header: /cvsroot/bitweaver/_bit_yellowpages/edit.php,v 1.3 2007/02/11 23:34:04 wjames5 Exp $
 // Copyright (c) 2004 bitweaver YellowPages
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -17,6 +17,10 @@ require_once(YELLOWPAGES_PKG_PATH.'lookup_yellowpages_inc.php' );
 
 if (isset($_REQUEST["title"])) {
     $gContent->mInfo["title"] = $_REQUEST["title"];
+}
+
+if (isset($_REQUEST["description"])) {
+    $gContent->mInfo["description"] = $_REQUEST["description"];
 }
 
 if (isset($_REQUEST["data"])) {

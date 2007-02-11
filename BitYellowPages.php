@@ -1,7 +1,7 @@
 <?php
 /**
-* $Header: /cvsroot/bitweaver/_bit_yellowpages/Attic/BitYellowPages.php,v 1.2 2007/02/11 22:41:00 wjames5 Exp $
-* $Id: BitYellowPages.php,v 1.2 2007/02/11 22:41:00 wjames5 Exp $
+* $Header: /cvsroot/bitweaver/_bit_yellowpages/Attic/BitYellowPages.php,v 1.3 2007/02/11 23:34:04 wjames5 Exp $
+* $Id: BitYellowPages.php,v 1.3 2007/02/11 23:34:04 wjames5 Exp $
 */
 
 /**
@@ -10,7 +10,7 @@
 *
 * @date created 2004/8/15
 * @author spider <spider@steelsun.com>
-* @version $Revision: 1.2 $ $Date: 2007/02/11 22:41:00 $ $Author: wjames5 $
+* @version $Revision: 1.3 $ $Date: 2007/02/11 23:34:04 $ $Author: wjames5 $
 * @class BitYellowPages
 */
 
@@ -153,6 +153,70 @@ class BitYellowPages extends LibertyAttachable {
 			$pParamHash['yellowpages_store']['content_id'] = $pParamHash['content_id'];
 		}
 
+		if( !empty( $pParamHash['group_id'] ) ) {
+			$pParamHash['yellowpages_store']['group_id'] = $pParamHash['group_id'];
+		}
+
+		if( !empty( $pParamHash['parent_id'] ) ) {
+			$pParamHash['yellowpages_store']['parent_id'] = $pParamHash['parent_id'];
+		}
+
+		if( !empty( $pParamHash['url'] ) ) {
+			$pParamHash['yellowpages_store']['url'] = $pParamHash['url'];
+		}
+
+		if( !empty( $pParamHash['url_title'] ) ) {
+			$pParamHash['yellowpages_store']['url_title'] = $pParamHash['url_title'];
+		}
+
+		if( !empty( $pParamHash['phone_main'] ) ) {
+			$pParamHash['yellowpages_store']['phone_main'] = $pParamHash['phone_main'];
+		}
+
+		if( !empty( $pParamHash['phone_mobile'] ) ) {
+			$pParamHash['yellowpages_store']['phone_mobile'] = $pParamHash['phone_mobile'];
+		}
+
+		if( !empty( $pParamHash['fax'] ) ) {
+			$pParamHash['yellowpages_store']['fax'] = $pParamHash['fax'];
+		}
+
+		if( !empty( $pParamHash['email'] ) ) {
+			$pParamHash['yellowpages_store']['email'] = $pParamHash['email'];
+		}
+
+		if( !empty( $pParamHash['im'] ) ) {
+			$pParamHash['yellowpages_store']['im'] = $pParamHash['im'];
+		}
+		
+		if( !empty( $pParamHash['im_type'] ) ) {
+			$pParamHash['yellowpages_store']['im_type'] = $pParamHash['im_type'];
+		}
+
+		if( !empty( $pParamHash['address_1'] ) ) {
+			$pParamHash['yellowpages_store']['address_1'] = $pParamHash['address_1'];
+		}
+
+		if( !empty( $pParamHash['address_2'] ) ) {
+			$pParamHash['yellowpages_store']['address_2'] = $pParamHash['address_2'];
+		}
+
+		if( !empty( $pParamHash['city'] ) ) {
+			$pParamHash['yellowpages_store']['city'] = $pParamHash['city'];
+		}
+
+		if( !empty( $pParamHash['region'] ) ) {
+			$pParamHash['yellowpages_store']['region'] = $pParamHash['region'];
+		}
+
+		if( !empty( $pParamHash['country'] ) ) {
+			$pParamHash['yellowpages_store']['country'] = $pParamHash['country'];
+		}
+
+		if( !empty( $pParamHash['postal_code'] ) ) {
+			$pParamHash['yellowpages_store']['postal_code'] = $pParamHash['postal_code'];
+		}
+
 		// check some lengths, if too long, then truncate
 		if( $this->isValid()&& !empty( $this->mInfo['description'] )&& empty( $pParamHash['description'] ) ) {
 			// someone has deleted the description, we need to null it out
@@ -171,7 +235,7 @@ class BitYellowPages extends LibertyAttachable {
 		if( !empty( $pParamHash['title'] ) ) {
 			if( empty( $this->mYellowPagesId ) ) {
 				if( empty( $pParamHash['title'] ) ) {
-					$this->mErrors['title'] = 'You must enter a name for this page.';
+					$this->mErrors['title'] = 'You must enter a name for this yellowpage item.';
 				} else {
 					$pParamHash['content_store']['title'] = substr( $pParamHash['title'], 0, 160 );
 				}
@@ -180,7 +244,7 @@ class BitYellowPages extends LibertyAttachable {
 			}
 		} else if( empty( $pParamHash['title'] ) ) {
 			// no name specified
-			$this->mErrors['title'] = 'You must specify a name';
+			$this->mErrors['title'] = 'You must specify a name for this yellowpage item';
 		}
 
 		return( count( $this->mErrors )== 0 );

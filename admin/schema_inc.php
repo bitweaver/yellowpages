@@ -20,7 +20,7 @@ $tables = array(
 		city C(160),
 		region C(160),
 		country C(160),
-		postal_code I4
+		postal_code C(16),
 		CONSTRAINT ', CONSTRAINT `yellowpages_content_ref` FOREIGN KEY (`content_id`) REFERENCES `".BIT_DB_PREFIX."liberty_content` (`content_id`)
 					, CONSTRAINT `yellowpages_group_id_ref` FOREIGN KEY (`group_id`) REFERENCES `".BIT_DB_PREFIX."yellowpages_groups` (`group_id`)
 					, CONSTRAINT `yellowpages_parent_id_ref` FOREIGN KEY (`parent_id`) REFERENCES `".BIT_DB_PREFIX."liberty_content` (`content_id`)'
