@@ -1,10 +1,50 @@
 <?php
 
 $tables = array(
-	'bit_yellowpagess' => "
-		yellowpages_id I4 AUTO PRIMARY,
+	'yellowpages' => "
+		yellowpages_id I4 PRIMARY,
 		content_id I4 NOTNULL,
-		description C(160)
+		group_id 14,
+		parent_id 14,
+		url C(250),
+		url_title C(160),
+		phone_main C(16),
+		phone_mobile C(16),
+		fax C(16),
+		email C(32),
+		im C(32),
+		im_type C(32),
+		address_1 C(160),
+		address_2 C(160),
+		city C(160),
+		region C(160),
+		country C(160),
+		postal_code I4
+		CONSTRAINT ', CONSTRAINT `yellowpages_content_ref` FOREIGN KEY (`content_id`) REFERENCES `".BIT_DB_PREFIX."liberty_content` (`content_id`)
+					, CONSTRAINT `yellowpages_group_id_ref` FOREIGN KEY (`group_id`) REFERENCES `".BIT_DB_PREFIX."yellowpages_groups` (`group_id`)
+					, CONSTRAINT `yellowpages_parent_id_ref` FOREIGN KEY (`parent_id`) REFERENCES `".BIT_DB_PREFIX."liberty_content` (`content_id`)'
+	",
+
+	'yellowpages_groups' => "
+		group_id I4 NOTNULL,
+		king_content_id I4
+		CONSTRAINT ', CONSTRAINT `yellowpages_king_content_id_ref` FOREIGN KEY (`king_content_id`) REFERENCES `".BIT_DB_PREFIX."liberty_content` (`content_id`)'
+	",
+
+	'yellowpages_hours' => "
+		content_id I4 NOTNULL,
+		day_id I4 NOTNULL,
+		start_time I8,
+		end_time I8,
+		twentyfour C(5) DEFAULT 'false',
+		note C(250)
+		CONSTRAINT ', CONSTRAINT `yellowpages_hours_content_ref` FOREIGN KEY (`content_id`) REFERENCES `".BIT_DB_PREFIX."liberty_content` (`content_id`)
+					, CONSTRAINT `yellowpages_day_id_ref` FOREIGN KEY (`day_id`) REFERENCES `".BIT_DB_PREFIX."yellowpages_days` (`day_id`)'
+	",
+
+	'yellowpages_days' => "
+		day_id I4 NOTNULL,
+		day_title C(160) NOTNULL
 	",
 );
 
