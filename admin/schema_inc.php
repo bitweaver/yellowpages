@@ -51,7 +51,8 @@ $tables = array(
 
 global $gBitInstaller;
 
-$gBitInstaller->makePackageHomeable( YELLOWPAGES_PKG_NAME );
+//VERIFY Installer said to remove
+//$gBitInstaller->makePackageHomeable( YELLOWPAGES_PKG_NAME );
 
 foreach( array_keys( $tables ) AS $tableName ) {
     $gBitInstaller->registerSchemaTable( YELLOWPAGES_PKG_NAME, $tableName, $tables[$tableName] );
@@ -75,7 +76,7 @@ $gBitInstaller->registerSchemaIndexes( YELLOWPAGES_PKG_NAME, $indices );
 // ### Sequences
 $sequences = array (
 	'yellowpages_id_seq' => array( 'start' => 1 ),
-	'yellowpages_group_id_seq' => array( 'start' => 1 )
+	'yellowpages_group_id_seq' => array( 'start' => 1 ),
 	'yellowpages_day_id_seq' => array( 'start' => 100 )
 );
 $gBitInstaller->registerSchemaSequences( YELLOWPAGES_PKG_NAME, $sequences );

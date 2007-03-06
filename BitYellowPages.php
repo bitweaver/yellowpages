@@ -1,7 +1,7 @@
 <?php
 /**
-* $Header: /cvsroot/bitweaver/_bit_yellowpages/Attic/BitYellowPages.php,v 1.3 2007/02/11 23:34:04 wjames5 Exp $
-* $Id: BitYellowPages.php,v 1.3 2007/02/11 23:34:04 wjames5 Exp $
+* $Header: /cvsroot/bitweaver/_bit_yellowpages/Attic/BitYellowPages.php,v 1.4 2007/03/06 17:07:51 wjames5 Exp $
+* $Id: BitYellowPages.php,v 1.4 2007/03/06 17:07:51 wjames5 Exp $
 */
 
 /**
@@ -10,7 +10,7 @@
 *
 * @date created 2004/8/15
 * @author spider <spider@steelsun.com>
-* @version $Revision: 1.3 $ $Date: 2007/02/11 23:34:04 $ $Author: wjames5 $
+* @version $Revision: 1.4 $ $Date: 2007/03/06 17:07:51 $ $Author: wjames5 $
 * @class BitYellowPages
 */
 
@@ -245,6 +245,57 @@ class BitYellowPages extends LibertyAttachable {
 		} else if( empty( $pParamHash['title'] ) ) {
 			// no name specified
 			$this->mErrors['title'] = 'You must specify a name for this yellowpage item';
+		}
+
+		return( count( $this->mErrors )== 0 );
+	}
+
+	/**
+	* Like verify above
+	* @param pParamHash be sure to pass by reference in case we need to make modifcations to the hash
+	* This function is responsible for data integrity and validation before any operations are performed with the $pParamHash
+	* NOTE: This is a PRIVATE METHOD!!!! do not call outside this class, under penalty of death!
+	*
+	* @param array pParams reference to hash of values that will be used to store the page, they will be modified where necessary
+	*
+	* @return bool TRUE on success, FALSE if verify failed. If FALSE, $this->mErrors will have reason why
+	*
+	* @access private
+	**/
+	function verifyHours( &$pParamHash ) {
+		global $gBitUser, $gBitSystem;
+
+		// make sure we're all loaded up of we have a mYellowPagesId
+		if( $this->mYellowPagesId && empty( $this->mInfo ) ) {
+			$this->load();
+		}
+
+		if( !empty( $this->mInfo['content_id'] ) ) {
+			$pParamHash['content_id'] = $this->mInfo['content_id'];
+		}
+
+		if( !empty( $pParamHash['content_id'] ) ) {
+			$pParamHash['yp_hours_store']['content_id'] = $pParamHash['content_id'];
+		}
+
+		if( !empty( $pParamHash['day_id'] ) ) {
+			$pParamHash['yp_hours_store']['day_id'] = $pParamHash['day_id'];
+		}
+
+		if( !empty( $pParamHash['start_time'] ) ) {
+			$pParamHash['yp_hours_store']['start_time'] = $pParamHash['start_time'];
+		}
+		
+		if( !empty( $pParamHash['end_time'] ) ) {
+			$pParamHash['yp_hours_store']['end_time'] = $pParamHash['end_time'];
+		}
+		
+		if( !empty( $pParamHash['twentyfour'] ) ) {
+			$pParamHash['yp_hours_store']['twentyfour'] = $pParamHash['twentyfour'];
+		}
+		
+		if( !empty( $pParamHash['note'] ) ) {
+			$pParamHash['yp_hours_store']['note'] = $pParamHash['note'];
 		}
 
 		return( count( $this->mErrors )== 0 );
