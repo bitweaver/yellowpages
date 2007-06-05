@@ -1,11 +1,11 @@
 <?php
-// $Header: /cvsroot/bitweaver/_bit_yellowpages/list_yellowpages.php,v 1.1 2007/02/11 22:41:00 wjames5 Exp $
+// $Header: /cvsroot/bitweaver/_bit_yellowpages/list_yellowpages.php,v 1.2 2007/06/05 07:58:32 squareing Exp $
 // Copyright (c) 2004 bitweaver YellowPages
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // Initialization
 require_once('../bit_setup_inc.php' );
-require_once(YELLOWPAGES_PKG_PATH.'BitYellowPages.php' );
+require_once(YELLOWPAGES_PKG_PATH.'YellowPages.php' );
 
 // Is package installed and enabled
 $gBitSystem->verifyPackage('yellowpages' );
@@ -38,7 +38,7 @@ if (isset($_REQUEST["submit_mult"]) && isset($_REQUEST["checked"]) && $_REQUEST[
                 $gBitSystem->confirmDialog( $formHash, array( 'warning' => 'Are you sure you want to delete '.count($_REQUEST["checked"]).' yellowpages?', 'error' => 'This cannot be undone!' ) );
         } else {
                 foreach ($_REQUEST["checked"] as $deleteId) {
-                        $tmpPage = new BitYellowPages( $deleteId );
+                        $tmpPage = new YellowPages( $deleteId );
                         if( !$tmpPage->load() || !$tmpPage->expunge() ) {
                                 array_merge( $errors, array_values( $tmpPage->mErrors ) );
                         }
@@ -50,7 +50,7 @@ if (isset($_REQUEST["submit_mult"]) && isset($_REQUEST["checked"]) && $_REQUEST[
 }
 
 
-$yellowpages = new BitYellowPages();
+$yellowpages = new YellowPages();
 $listyellowpagess = $yellowpages->getList( $_REQUEST );
 
 

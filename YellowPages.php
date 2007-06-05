@@ -1,7 +1,7 @@
 <?php
 /**
-* $Header: /cvsroot/bitweaver/_bit_yellowpages/Attic/BitYellowPages.php,v 1.4 2007/03/06 17:07:51 wjames5 Exp $
-* $Id: BitYellowPages.php,v 1.4 2007/03/06 17:07:51 wjames5 Exp $
+* $Header: /cvsroot/bitweaver/_bit_yellowpages/YellowPages.php,v 1.1 2007/06/05 07:58:32 squareing Exp $
+* $Id: YellowPages.php,v 1.1 2007/06/05 07:58:32 squareing Exp $
 */
 
 /**
@@ -10,8 +10,8 @@
 *
 * @date created 2004/8/15
 * @author spider <spider@steelsun.com>
-* @version $Revision: 1.4 $ $Date: 2007/03/06 17:07:51 $ $Author: wjames5 $
-* @class BitYellowPages
+* @version $Revision: 1.1 $ $Date: 2007/06/05 07:58:32 $ $Author: squareing $
+* @class YellowPages
 */
 
 require_once( LIBERTY_PKG_PATH.'LibertyAttachable.php' );
@@ -19,9 +19,9 @@ require_once( LIBERTY_PKG_PATH.'LibertyAttachable.php' );
 /**
 * This is used to uniquely identify the object
 */
-define( 'BITYELLOWPAGES_CONTENT_TYPE_GUID', 'bityellowpages' );
+define( 'YELLOWPAGES_CONTENT_TYPE_GUID', 'yellowpages' );
 
-class BitYellowPages extends LibertyAttachable {
+class YellowPages extends LibertyAttachable {
 	/**
 	* Primary key for our mythical YellowPages class object & table
 	* @public
@@ -31,17 +31,17 @@ class BitYellowPages extends LibertyAttachable {
 	/**
 	* During initialisation, be sure to call our base constructors
 	**/
-	function BitYellowPages( $pYellowPagesId=NULL, $pContentId=NULL ) {
+	function YellowPages( $pYellowPagesId=NULL, $pContentId=NULL ) {
 		LibertyAttachable::LibertyAttachable();
 		$this->mYellowPagesId = $pYellowPagesId;
 		$this->mContentId = $pContentId;
-		$this->mContentTypeGuid = BITYELLOWPAGES_CONTENT_TYPE_GUID;
-		$this->registerContentType( BITYELLOWPAGES_CONTENT_TYPE_GUID, array(
-			'content_type_guid' => BITYELLOWPAGES_CONTENT_TYPE_GUID,
+		$this->mContentTypeGuid = YELLOWPAGES_CONTENT_TYPE_GUID;
+		$this->registerContentType( YELLOWPAGES_CONTENT_TYPE_GUID, array(
+			'content_type_guid' => YELLOWPAGES_CONTENT_TYPE_GUID,
 			'content_description' => 'YellowPages package with bare essentials',
-			'handler_class' => 'BitYellowPages',
+			'handler_class' => 'YellowPages',
 			'handler_package' => 'yellowpages',
-			'handler_file' => 'BitYellowPages.php',
+			'handler_file' => 'YellowPages.php',
 			'maintainer_url' => 'http://www.bitweaver.org'
 		) );
 	}
@@ -357,9 +357,9 @@ class BitYellowPages extends LibertyAttachable {
 
 		$query = "SELECT yp.*, lc.`content_id`, lc.`title`, lc.`data`
 			FROM `".BIT_DB_PREFIX."yellowpages` yp INNER JOIN `".BIT_DB_PREFIX."liberty_content` lc ON( lc.`content_id` = yp.`content_id` )
-			".( !empty( $mid )? $mid.' AND ' : ' WHERE ' )." lc.`content_type_guid` = '".BITYELLOWPAGES_CONTENT_TYPE_GUID."'
-			ORDER BY ".$this->mDb->convert_sortmode( $sort_mode );
-		$query_cant = "select count( * )from `".BIT_DB_PREFIX."liberty_content` lc ".( !empty( $mid )? $mid.' AND ' : ' WHERE ' )." lc.`content_type_guid` = '".BITYELLOWPAGES_CONTENT_TYPE_GUID."'";
+			".( !empty( $mid )? $mid.' AND ' : ' WHERE ' )." lc.`content_type_guid` = '".YELLOWPAGES_CONTENT_TYPE_GUID."'
+			ORDER BY ".$this->mDb->convertSortmode( $sort_mode );
+		$query_cant = "select count( * )from `".BIT_DB_PREFIX."liberty_content` lc ".( !empty( $mid )? $mid.' AND ' : ' WHERE ' )." lc.`content_type_guid` = '".YELLOWPAGES_CONTENT_TYPE_GUID."'";
 		$result = $this->mDb->query( $query,$bindvars,$max_records,$offset );
 		$ret = array();
 		while( $res = $result->fetchRow() ) {

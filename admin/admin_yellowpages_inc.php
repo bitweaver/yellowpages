@@ -1,5 +1,5 @@
 <?php
-// $Header: /cvsroot/bitweaver/_bit_yellowpages/admin/admin_yellowpages_inc.php,v 1.2 2007/02/11 21:57:13 wjames5 Exp $
+// $Header: /cvsroot/bitweaver/_bit_yellowpages/admin/admin_yellowpages_inc.php,v 1.3 2007/06/05 07:58:33 squareing Exp $
 // Copyright (c) 2005 bitweaver YellowPages
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -9,7 +9,7 @@ if (isset($_REQUEST["yellowpagesset"]) && isset($_REQUEST["homeYellowPages"])) {
     $gBitSmarty->assign('home_yellowpages', $_REQUEST["homeYellowPages"]);
 }
 
-require_once(YELLOWPAGES_PKG_PATH.'BitYellowPages.php' );
+require_once(YELLOWPAGES_PKG_PATH.'YellowPages.php' );
 
 $formYellowPagesLists = array(
 	"yellowpages_list_yellowpages_id" => array(
@@ -45,7 +45,7 @@ if( $processForm ) {
 
 }
 
-$yellowpage = new BitYellowPages();
+$yellowpage = new YellowPages();
 $yellowpages = $yellowpage->getList( $_REQUEST );
 $gBitSmarty->assign_by_ref('yellowpages', $yellowpages['data']);
 ?>

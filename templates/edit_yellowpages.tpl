@@ -1,77 +1,102 @@
-{* $Header: /cvsroot/bitweaver/_bit_yellowpages/templates/edit_yellowpages.tpl,v 1.1 2007/02/03 19:56:56 spiderr Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_yellowpages/templates/edit_yellowpages.tpl,v 1.2 2007/06/05 07:58:33 squareing Exp $ *}
 {strip}
 <div class="floaticon">{bithelp}</div>
 
-{* Check to see if there is an editing conflict *}
-{if $editpageconflict == 'y'}
-	<script language="javascript" type="text/javascript">
-		<!-- Hide Script
-			alert("{tr}This page is being edited by {$semUser}{/tr}. {tr}Proceed at your own peril{/tr}.")
-		//End Hide Script-->
-	</script>
-{/if}
-
-<div class="admin yellowpages">
-	{if $preview}
-		<h2>Preview {$gContent->mInfo.title}</h2>
-		<div class="preview">
-			{include file="bitpackage:yellowpages/yellowpages_display.tpl" page=`$gContent->mInfo.yellowpages_id`}
-		</div>
-	{/if}
-
+<div class="edit yellowpages">
 	<div class="header">
-		<h1>
-			{if $gContent->mInfo.yellowpages_id}
-				{tr}{tr}Edit{/tr} {$gContent->mInfo.title}{if $gContent->mInfo.page_alias}&nbsp;( {$gContent->mInfo.page_alias} ){/if}{/tr}
-			{else}
-				{tr}Create New Record{/tr}
-			{/if}
-		</h1>
+		<h1>{tr}Edit/Create New Record{/tr}</h1>
 	</div>
 
 	<div class="body">
-		{form enctype="multipart/form-data" id="edityellowpagesform"}
-			{legend legend="Edit/Create YellowPages Record"}
-				<input type="hidden" name="yellowpages_id" value="{$gContent->mInfo.yellowpages_id}" />
+		{form legend="Edit/Create YellowPages Record"}
+			<input type="hidden" name="yellowpages_id" value="{$gContent->getField('yellowpages_id')}" />
 
-				<div class="row">
-					{formlabel label="Title" for="title"}
-					{forminput}
-						<input type="text" size="60" maxlength="200" name="title" id="title" value="{if $preview}{$gContent->mInfo.title}{else}{$gContent->mInfo.title}{/if}" />
-					{/forminput}
-				</div>
+			<div class="row">
+				{formlabel label="Title" for="title"}
+				{forminput}
+					<input type="text" size="50" maxlength="160" name="title" id="title" value="{$gContent->getField('title')}" />
+				{/forminput}
+			</div>
 
-				{if $gBitSystemPrefs.feature_wiki_description eq 'y'}
-					<div class="row">
-						{formlabel label="Description" for="description"}
-						{forminput}
-							<input size="60" type="text" name="description" id="description" value="{$gContent->mInfo.description|escape}" />
-							{formhelp note="Brief description of the page."}
-						{/forminput}
-					</div>
-				{/if}
+			<div class="row">
+				{formlabel label="Name" for="firstname"}
+				{forminput}
+					<input type="text" size="30" maxlength="160" name="firstname" id="firstname" value="{$gContent->getField('firstname')}" />
+				{/forminput}
+			</div>
 
-				{include file="bitpackage:liberty/edit_format.tpl"}
+			<div class="row">
+				{formlabel label="Last Name" for="lastname"}
+				{forminput}
+					<input type="text" size="30" maxlength="160" name="lastname" id="lastname" value="{$gContent->getField('lastname')}" />
+				{/forminput}
+			</div>
 
-				{if $gBitSystemPrefs.package_smileys eq 'y'}
-					{include file="bitpackage:smileys/smileys_full.tpl"}
-				{/if}
+			<div class="row">
+				{formlabel label="Address" for="address_1"}
+				{forminput}
+					<input type="text" size="30" maxlength="160" name="address_1" id="address_1" value="{$gContent->getField('address_1')}" /><br />
+					<input type="text" size="30" maxlength="160" name="address_2" id="address_2" value="{$gContent->getField('address_2')}" />
+				{/forminput}
+			</div>
 
-				{if $gBitSystemPrefs.package_quicktags eq 'y'}
-					{include file="bitpackage:quicktags/quicktags_full.tpl"}
-				{/if}
+			<div class="row">
+				{formlabel label="City" for="city"}
+				{forminput}
+					<input type="text" size="30" maxlength="160" name="city" id="city" value="{$gContent->getField('city')}" />
+				{/forminput}
+			</div>
 
-				<div class="row">
-					{forminput}
-						<textarea id="{$textarea_id}" name="data" rows="{$rows|default:20}" cols="{$cols|default:50}">{$gContent->mInfo.data|escape}</textarea>
-					{/forminput}
-				</div>
+			<div class="row">
+				{formlabel label="Region" for="region"}
+				{forminput}
+					<input type="text" size="30" maxlength="160" name="region" id="region" value="{$gContent->getField('region')}" />
+				{/forminput}
+			</div>
 
-				<div class="row submit">
-					<input type="submit" name="preview" value="{tr}preview{/tr}" /> 
-					<input type="submit" name="save_yellowpages" value="{tr}Save{/tr}" />
-				</div>
-			{/legend}
+			<div class="row">
+				{formlabel label="Postal Code" for="postal_code"}
+				{forminput}
+					<input type="text" size="16" maxlength="16" name="postal_code" id="postal_code" value="{$gContent->getField('postal_code')}" />
+				{/forminput}
+			</div>
+
+			<div class="row">
+				{formlabel label="Country" for="country"}
+				{forminput}
+					{html_options name=country values=$countries output=$countries selected=$gContent->getField('country')}
+				{/forminput}
+			</div>
+
+			<div class="row">
+				{formlabel label="email" for="email"}
+				{forminput}
+				<label><input type="text" size="30" maxlength="160" name="email1" id="email1" value="{$gContent->getField('email1')}" /> {tr}Main email address{/tr}</label><br />
+				<label><input type="text" size="30" maxlength="160" name="email2" id="email2" value="{$gContent->getField('email2')}" /> {tr}Alternate email address{/tr}</label>
+				{/forminput}
+			</div>
+
+			<div class="row">
+				{formlabel label="Homepage" for="url"}
+				{forminput}
+					{tr}Display name{/tr}: <input type="text" size="20" maxlength="160" name="url_title" id="url_title" value="{$gContent->getField('url_title')}" /><br />
+					<input type="text" size="50" maxlength="250" name="url" id="url" value="{$gContent->getField('url')}" />
+				{/forminput}
+			</div>
+
+			<div class="row">
+				{formlabel label="Instant Messaging ID" for="im_id"}
+				{forminput}
+					<input type="text" size="20" maxlength="32" name="im_id" id="im_id" value="{$gContent->getField('im_id')}" /><br />
+					{html_options name=im_type values=$imTypes output=$imTypes selected=$gContent->getField('im_type')}
+				{/forminput}
+			</div>
+
+			{textarea}{$gContent->getField('data')}{/textarea}
+
+			<div class="row submit">
+				<input type="submit" name="save_yellowpages" value="{tr}Save{/tr}" />
+			</div>
 		{/form}
 	</div><!-- end .body -->
 </div><!-- end .yellowpages -->

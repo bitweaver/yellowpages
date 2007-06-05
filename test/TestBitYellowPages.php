@@ -1,6 +1,6 @@
 <?php
 require_once('../../bit_setup_inc.php');
-require_once(YELLOWPAGES_PKG_PATH.'BitYellowPages.php');
+require_once(YELLOWPAGES_PKG_PATH.'YellowPages.php');
 
 class TestBitYellowPages extends Test {
     
@@ -16,7 +16,7 @@ class TestBitYellowPages extends Test {
 
     function testCreateItem()
     {
-        $this->test = new BitYellowPages();
+        $this->test = new YellowPages();
         Assert::equalsTrue($this->test != NULL, 'Error during initialisation');
     }
 
@@ -52,7 +52,7 @@ class TestBitYellowPages extends Test {
     
     function testLoadItem()
     {
-        $this->test = new BitYellowPages($this->id);
+        $this->test = new YellowPages($this->id);
         Assert::equals($this->test->load(), 23);
     }
 
