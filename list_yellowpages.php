@@ -1,9 +1,20 @@
 <?php
-// $Header: /cvsroot/bitweaver/_bit_yellowpages/list_yellowpages.php,v 1.2 2007/06/05 07:58:32 squareing Exp $
-// Copyright (c) 2004 bitweaver YellowPages
-// All Rights Reserved. See copyright.txt for details and a complete list of authors.
-// Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// Initialization
+/**
+ * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/list_yellowpages.php,v 1.3 2008/06/19 05:01:58 lsces Exp $
+ * $Id: list_yellowpages.php,v 1.3 2008/06/19 05:01:58 lsces Exp $
+ * 
+ * YellowPages class to illustrate best practices when creating a new bitweaver package that
+ * builds on core bitweaver functionality, such as the Liberty CMS engine
+ *
+ * @date created 2004/8/15
+ * @author spider <spider@steelsun.com>
+ * @package yellowpages
+ * @subpackage functions
+ */
+
+/**
+ * Initialize
+ */
 require_once('../bit_setup_inc.php' );
 require_once(YELLOWPAGES_PKG_PATH.'YellowPages.php' );
 

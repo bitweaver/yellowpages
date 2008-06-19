@@ -1,19 +1,19 @@
 <?php
 /**
-* $Header: /cvsroot/bitweaver/_bit_yellowpages/YellowPages.php,v 1.1 2007/06/05 07:58:32 squareing Exp $
-* $Id: YellowPages.php,v 1.1 2007/06/05 07:58:32 squareing Exp $
-*/
+ * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/YellowPages.php,v 1.2 2008/06/19 05:01:38 lsces Exp $
+ * $Id: YellowPages.php,v 1.2 2008/06/19 05:01:38 lsces Exp $
+ * 
+ * YellowPages class to illustrate best practices when creating a new bitweaver package that
+ * builds on core bitweaver functionality, such as the Liberty CMS engine
+ *
+ * @date created 2004/8/15
+ * @author spider <spider@steelsun.com>
+ * @package yellowpages
+ */
 
 /**
-* YellowPages class to illustrate best practices when creating a new bitweaver package that
-* builds on core bitweaver functionality, such as the Liberty CMS engine
-*
-* @date created 2004/8/15
-* @author spider <spider@steelsun.com>
-* @version $Revision: 1.1 $ $Date: 2007/06/05 07:58:32 $ $Author: squareing $
-* @class YellowPages
-*/
-
+ * Initialize
+ */
 require_once( LIBERTY_PKG_PATH.'LibertyAttachable.php' );
 
 /**
@@ -21,6 +21,9 @@ require_once( LIBERTY_PKG_PATH.'LibertyAttachable.php' );
 */
 define( 'YELLOWPAGES_CONTENT_TYPE_GUID', 'yellowpages' );
 
+/**
+ * @package yellowpages
+ */
 class YellowPages extends LibertyAttachable {
 	/**
 	* Primary key for our mythical YellowPages class object & table
