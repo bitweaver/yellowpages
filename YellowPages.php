@@ -1,12 +1,12 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/YellowPages.php,v 1.2 2008/06/19 05:01:38 lsces Exp $
- * $Id: YellowPages.php,v 1.2 2008/06/19 05:01:38 lsces Exp $
+ * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/YellowPages.php,v 1.3 2008/06/19 06:50:18 lsces Exp $
+ * $Id: YellowPages.php,v 1.3 2008/06/19 06:50:18 lsces Exp $
  * 
  * YellowPages class to illustrate best practices when creating a new bitweaver package that
  * builds on core bitweaver functionality, such as the Liberty CMS engine
  *
- * @date created 2004/8/15
+ * date created 2004/8/15
  * @author spider <spider@steelsun.com>
  * @package yellowpages
  */
