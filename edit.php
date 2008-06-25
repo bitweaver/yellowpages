@@ -1,7 +1,7 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/edit.php,v 1.6 2008/06/19 06:50:18 lsces Exp $
- * $Id: edit.php,v 1.6 2008/06/19 06:50:18 lsces Exp $
+ * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/edit.php,v 1.7 2008/06/25 22:21:31 spiderr Exp $
+ * $Id: edit.php,v 1.7 2008/06/25 22:21:31 spiderr Exp $
  * 
  * YellowPages class to illustrate best practices when creating a new bitweaver package that
  * builds on core bitweaver functionality, such as the Liberty CMS engine
@@ -309,5 +309,5 @@ if ($gBitSystem->isPackageActive( 'quicktags' ) ) {
 $gBitSmarty->assign( 'textarea_id', 'edityellowpages' );
 
 // Display the template
-$gBitSystem->display('bitpackage:yellowpages/edit_yellowpages.tpl', tra('YellowPages') );
+$gBitSystem->display('bitpackage:yellowpages/edit_yellowpages.tpl', tra('YellowPages') , array( 'display_mode' => 'edit' ));
 ?>

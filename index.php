@@ -1,5 +1,5 @@
 <?php
-// $Header: /cvsroot/bitweaver/_bit_yellowpages/index.php,v 1.3 2007/06/05 07:58:32 squareing Exp $
+// $Header: /cvsroot/bitweaver/_bit_yellowpages/index.php,v 1.4 2008/06/25 22:21:31 spiderr Exp $
 // Copyright (c) 2004 bitweaver YellowPages
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -19,5 +19,5 @@ if (!isset($_REQUEST['yellowpages_id'] ) ) {
 require_once(YELLOWPAGES_PKG_PATH.'lookup_yellowpages_inc.php' );
 
 // Display the template
-$gBitSystem->display( 'bitpackage:yellowpages/show_yellowpages.tpl', tra( 'YellowPages' ));
+$gBitSystem->display( 'bitpackage:yellowpages/show_yellowpages.tpl', tra( 'YellowPages' ), array( 'display_mode' => 'display' ));
 ?>

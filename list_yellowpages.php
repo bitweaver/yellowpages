@@ -1,7 +1,7 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/list_yellowpages.php,v 1.4 2008/06/19 06:50:18 lsces Exp $
- * $Id: list_yellowpages.php,v 1.4 2008/06/19 06:50:18 lsces Exp $
+ * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/list_yellowpages.php,v 1.5 2008/06/25 22:21:31 spiderr Exp $
+ * $Id: list_yellowpages.php,v 1.5 2008/06/25 22:21:31 spiderr Exp $
  * 
  * YellowPages class to illustrate best practices when creating a new bitweaver package that
  * builds on core bitweaver functionality, such as the Liberty CMS engine
@@ -70,6 +70,6 @@ $gBitSmarty->assign_by_ref('control', $_REQUEST["control"]);
 $gBitSmarty->assign_by_ref('list', $listyellowpagess["data"]);
 
 // Display the template
-$gBitSystem->display('bitpackage:yellowpages/list_yellowpages.tpl', tra('YellowPages') );
+$gBitSystem->display('bitpackage:yellowpages/list_yellowpages.tpl', tra('YellowPages') , array( 'display_mode' => 'list' ));
 
 ?>
