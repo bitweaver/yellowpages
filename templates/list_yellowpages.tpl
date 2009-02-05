@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_yellowpages/templates/list_yellowpages.tpl,v 1.1 2007/02/11 22:41:00 wjames5 Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_yellowpages/templates/list_yellowpages.tpl,v 1.2 2009/02/05 19:54:31 lsces Exp $ *}
 <div class="floaticon">{bithelp}</div>
 
 <div class="listing yellowpages">
@@ -96,6 +96,6 @@
 		{/form}
 	</div><!-- end .body -->
 
-	{pagination_c}
+	{libertypagination}
 	{minifind sort_mode=$sort_mode}
 </div><!-- end .admin -->
