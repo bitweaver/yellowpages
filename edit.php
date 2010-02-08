@@ -1,7 +1,7 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/edit.php,v 1.7 2008/06/25 22:21:31 spiderr Exp $
- * $Id: edit.php,v 1.7 2008/06/25 22:21:31 spiderr Exp $
+ * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/edit.php,v 1.8 2010/02/08 21:27:27 wjames5 Exp $
+ * $Id: edit.php,v 1.8 2010/02/08 21:27:27 wjames5 Exp $
  * 
  * YellowPages class to illustrate best practices when creating a new bitweaver package that
  * builds on core bitweaver functionality, such as the Liberty CMS engine
@@ -15,7 +15,7 @@
 /**
  * Initialize
  */
-require_once('../bit_setup_inc.php' );
+require_once('../kernel/setup_inc.php' );
 
 // Is package installed and enabled
 $gBitSystem->verifyPackage('yellowpages' );
