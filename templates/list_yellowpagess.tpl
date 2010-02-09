@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_yellowpages/templates/list_yellowpagess.tpl,v 1.2 2009/02/05 19:54:31 lsces Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_yellowpages/templates/list_yellowpagess.tpl,v 1.3 2010/02/09 17:21:22 wjames5 Exp $ *}
 <div class="floaticon">{bithelp}</div>
 
 <div class="listing yellowpages">
@@ -74,7 +74,7 @@
 					<script type="text/javascript">//<![CDATA[
 						// check / uncheck all.
 						document.write("<label for=\"switcher\">{tr}Select All{/tr}</label> ");
-						document.write("<input name=\"switcher\" id=\"switcher\" type=\"checkbox\" onclick=\"switchCheckboxes(this.form.id,'checked[]','switcher')\" /><br />");
+						document.write("<input name=\"switcher\" id=\"switcher\" type=\"checkbox\" onclick=\"BitBase.switchCheckboxes(this.form.id,'checked[]','switcher')\" /><br />");
 					//]]></script>
 
 					<select name="submit_mult" onchange="this.form.submit();">
