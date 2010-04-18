@@ -1,7 +1,7 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/YellowPages.php,v 1.3 2008/06/19 06:50:18 lsces Exp $
- * $Id: YellowPages.php,v 1.3 2008/06/19 06:50:18 lsces Exp $
+ * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/YellowPages.php,v 1.4 2010/04/18 02:30:45 wjames5 Exp $
+ * $Id: YellowPages.php,v 1.4 2010/04/18 02:30:45 wjames5 Exp $
  * 
  * YellowPages class to illustrate best practices when creating a new bitweaver package that
  * builds on core bitweaver functionality, such as the Liberty CMS engine
@@ -41,7 +41,7 @@ class YellowPages extends LibertyAttachable {
 		$this->mContentTypeGuid = YELLOWPAGES_CONTENT_TYPE_GUID;
 		$this->registerContentType( YELLOWPAGES_CONTENT_TYPE_GUID, array(
 			'content_type_guid' => YELLOWPAGES_CONTENT_TYPE_GUID,
-			'content_description' => 'YellowPages package with bare essentials',
+			'content_name' => 'Yellowpages Listing',
 			'handler_class' => 'YellowPages',
 			'handler_package' => 'yellowpages',
 			'handler_file' => 'YellowPages.php',
