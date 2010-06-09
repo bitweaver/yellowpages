@@ -1,7 +1,7 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_yellowpages/lookup_yellowpages_inc.php,v 1.4 2008/06/19 06:50:18 lsces Exp $
- * $Id: lookup_yellowpages_inc.php,v 1.4 2008/06/19 06:50:18 lsces Exp $
+ * @version $Header$
+ * $Id$
  * 
  * YellowPages class to illustrate best practices when creating a new bitweaver package that
  * builds on core bitweaver functionality, such as the Liberty CMS engine

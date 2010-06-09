@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_yellowpages/templates/list_yellowpages.tpl,v 1.3 2010/02/09 17:21:22 wjames5 Exp $ *}
+{* $Header$ *}
 <div class="floaticon">{bithelp}</div>
 
 <div class="listing yellowpages">

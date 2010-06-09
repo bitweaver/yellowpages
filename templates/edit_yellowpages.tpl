@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_yellowpages/templates/edit_yellowpages.tpl,v 1.2 2007/06/05 07:58:33 squareing Exp $ *}
+{* $Header$ *}
 {strip}
 <div class="floaticon">{bithelp}</div>
 
